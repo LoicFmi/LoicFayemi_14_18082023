@@ -1,13 +1,17 @@
-import './style/app.css';
+// import './style/app.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { Provider } from 'react-redux';
+import Home from './pages/Home';
 
 export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Wealth Health
-        </p>
-      </header>
-    </div>
+    // <Provider store={store}>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+    // </Provider>
   );
 }
