@@ -5,12 +5,18 @@
   "dependencies": {
     "@babel/core": "^7.23.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@material-ui/core": "^4.12.4",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.7.0",
+    "material-table": "^1.63.0",
     "modal-library-lfmi": "file:../../modal-library/modal-library-lfmi-0.3.11.tgz",
     "react": "^18.2.0",
+    "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
+    "react-dropdown": "^1.11.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"

@@ -1,23 +1,100 @@
-.title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+body {
+  margin: 0;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  border-bottom: solid 3px #5a6d08;
+}
+
+.logo {
+  height: 80px;
+}
+
+h1 {
+  color: #93ad18;
+  margin-left: 90px;
+}
+
+.nav {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.nav a {
+  font-weight: bold;
+  color: #5a6d08;
+  text-decoration: none;
+  margin-right: 14px;
+  font-size: 20px;
+}
+
+.inactive {
+  display: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.employees-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  color: #5a6d08;
+  margin-top: 50px;
+}
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  background-color: RGB(147, 173, 24, 0.1);
+  border-radius: 10px;
+  width: 600px;
+  padding: 30px 0;
+  box-shadow: 0px 0px 10px #5a6d08;
+}
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 10px;
 }
 
 .address {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+.save {
+  margin: auto;
+  width: 30%;
+  height: 25px;
+  margin-top: 30px;
+  color: white;
+  background-color: #5a6d08;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
 }
