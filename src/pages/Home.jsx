@@ -5,7 +5,8 @@ import employees from '../data/Employees.json';
 export default function Home() {
   const { useState } = React;
   const [selectedRow, setSelectedRow] = useState(null);
-  let employeesList = employees;
+  let employeesList =
+    JSON.parse(window.localStorage.getItem('employeesList')) || employees;
   return (
     <div className="employees-list">
       <h2 className="title">Current Employees</h2>
