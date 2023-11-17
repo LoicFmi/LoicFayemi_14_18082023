@@ -7,10 +7,11 @@ import { subYears, addYears, getYear, getMonth } from 'date-fns';
 import range from 'lodash/range';
 import 'react-datepicker/dist/react-datepicker.css';
 import employees from '../data/Employees.json';
-// import Modal from 'modal-library-lfmi';
-// import close from '../assets/img/close.png';
+import Modal from 'modal-library-lfmi';
+import close from '../assets/img/close.png';
+import user from '../assets/img/user.png';
 
-export default function Form() {
+export default function Form(showModal) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
@@ -36,6 +37,14 @@ export default function Form() {
   };
 
   const [newEmployee, setNewEmployee] = useState(initialState);
+  const [modalState, setModalState] = useState(false);
+  const handleOpen = () => {
+    setModalState(true);
+  };
+  const handleClose = (e) => {
+    e.preventDefault();
+    setModalState(false);
+  };
 
   let employeesList =
     JSON.parse(window.localStorage.getItem('employeesList')) || employees;
@@ -53,6 +62,18 @@ export default function Form() {
     newEmployee.state = state.value;
     newEmployee.zipcode = zipCode;
 
+    // if (
+    //   firstName
+    //   // firstName &&
+    //   // lastName &&
+    //   // startDate &&
+    //   // department &&
+    //   // birthDate &&
+    //   // street &&
+    //   // city &&
+    //   // state &&
+    //   // zipCode
+    // ) {
     employeesList.push(newEmployee);
 
     localStorage.setItem('employeesList', JSON.stringify(employeesList));
@@ -69,7 +90,8 @@ export default function Form() {
     setState('');
     setZipCode('');
 
-    // Modal
+    handleOpen();
+    // }
   };
 
   return (
@@ -80,7 +102,7 @@ export default function Form() {
         id="first-name"
         onChange={(e) => setFirstName(e.target.value)}
         value={firstName}
-        required
+        // required
       />
       <label htmlFor="last-name">Last Name</label>
       <input
@@ -88,7 +110,7 @@ export default function Form() {
         id="last-name"
         onChange={(e) => setLastName(e.target.value)}
         value={lastName}
-        required
+        // required
       />
       <label htmlFor="date-of-birth">Date of Birth</label>
       <DatePicker
@@ -132,7 +154,7 @@ export default function Form() {
         maxDate={new Date()}
         onChange={(e) => setBirthDate(e)}
         value={birthDate}
-        required
+        // required
       />
       <label htmlFor="start-date">Start Date</label>
       <DatePicker
@@ -176,7 +198,7 @@ export default function Form() {
         maxDate={addYears(new Date(), 2)}
         onChange={(date) => setStartDate(date)}
         value={startDate}
-        required
+        // required
       />
       <fieldset className="address">
         <legend>Address</legend>
@@ -187,7 +209,7 @@ export default function Form() {
           type="text"
           onChange={(e) => setStreet(e.target.value)}
           value={street}
-          required
+          // required
         />
 
         <label htmlFor="city">City</label>
@@ -196,7 +218,7 @@ export default function Form() {
           type="text"
           onChange={(e) => setCity(e.target.value)}
           value={city}
-          required
+          // required
         />
 
         <label htmlFor="state">State</label>
@@ -205,16 +227,18 @@ export default function Form() {
           placeholder={'Select a state'}
           onChange={(state) => setState(state)}
           value={state}
-          required
+          // required
         />
 
         <label htmlFor="zip-code">Zip Code</label>
         <input
           id="zip-code"
           type="text"
+          // pattern="[0-9]{5}"
+          // maxLength={5}
           onChange={(e) => setZipCode(e.target.value)}
           value={zipCode}
-          required
+          // required
         />
       </fieldset>
 
@@ -224,20 +248,25 @@ export default function Form() {
         placeholder="Select a department"
         onChange={(department) => setDepartment(department)}
         value={department}
-        required
+        // required
       />
 
       <button type="submit" className="save">
         Save
       </button>
 
-      {/* <Modal
+      <Modal
+        show={modalState}
+        defaultStyle={true}
+        closeModal={handleClose}
         iconClose={close}
         title="Confirmation"
-        hideTitle="false"
+        hideTitle={false}
+        icon={user}
+        hideIcon={false}
         text="Employee created"
-        hideText="false"
-      /> */}
+        hideText={false}
+      />
     </form>
   );
 }
