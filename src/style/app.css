@@ -109,7 +109,7 @@ label {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.modal-main {
+.modal-style {
   position:fixed;
   display: flex;
   flex-direction: column;
@@ -121,25 +121,37 @@ label {
   transform: translate(-50%,-50%);
 }
 
-.default-style {
+.modal-default {
   width: 35%;
   border-radius: 10px 10px 10px 10px;
+  box-shadow: 0px 0px 10px black;
 }
 
-.modal-title {
+.title-style {
   position: relative;
   top: -30px;
 }
 
-.modal-img {
+.title-default {
+  font-weight: bold;
+} 
+
+.icon-style {
   position: relative;
   top: -25px;
-  width: 15%;
+  max-width: 50%;
 }
 
-.modal-text {
+.icon-default {
+  width: 100px;
+}
+
+.text-style {
   position: relative;
   top: -10px;
+}
+
+.text-default {
   font-weight: bold;
 }
 

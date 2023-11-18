@@ -7,7 +7,7 @@ import { subYears, addYears, getYear, getMonth } from 'date-fns';
 import range from 'lodash/range';
 import 'react-datepicker/dist/react-datepicker.css';
 import employees from '../data/Employees.json';
-import Modal from 'modal-library-lfmi';
+import ConfirmationModal from 'modal-library-lfmi';
 import close from '../assets/img/close.png';
 import user from '../assets/img/user.png';
 
@@ -255,7 +255,7 @@ export default function Form(showModal) {
         Save
       </button>
 
-      <Modal
+      <ConfirmationModal
         show={modalState}
         defaultStyle={true}
         closeModal={handleClose}
