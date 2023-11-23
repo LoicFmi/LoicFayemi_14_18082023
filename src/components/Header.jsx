@@ -10,12 +10,15 @@ export default function Header() {
       <h1 className="title">HRNet</h1>
       <nav className="nav">
         <Link
-          className={location.pathname === '/Create' ? 'inactive' : ''}
+          className={location.pathname === '/Create' ? 'inactive' : 'swap-page'}
           to="/Create"
         >
           Create employee
         </Link>
-        <Link className={location.pathname === '/' ? 'inactive' : ''} to="/">
+        <Link
+          className={location.pathname === '/' ? 'inactive' : 'swap-page '}
+          to="/"
+        >
           Current employees
         </Link>
       </nav>

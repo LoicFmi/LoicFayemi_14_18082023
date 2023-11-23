@@ -62,18 +62,6 @@ export default function Form(showModal) {
     newEmployee.state = state.value;
     newEmployee.zipcode = zipCode;
 
-    // if (
-    //   firstName
-    //   // firstName &&
-    //   // lastName &&
-    //   // startDate &&
-    //   // department &&
-    //   // birthDate &&
-    //   // street &&
-    //   // city &&
-    //   // state &&
-    //   // zipCode
-    // ) {
     employeesList.push(newEmployee);
 
     localStorage.setItem('employeesList', JSON.stringify(employeesList));
@@ -117,16 +105,11 @@ export default function Form(showModal) {
         showIcon
         dateFormat="dd/MM/yyyy"
         renderCustomHeader={({ date, changeYear, changeMonth }) => (
-          <div
-            style={{
-              margin: 10,
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
+          <div className="datepicker-header">
             <select
               value={getYear(date)}
               onChange={({ target: { value } }) => changeYear(value)}
+              className="datepicker-select"
             >
               {years.map((option) => (
                 <option key={option} value={option}>
@@ -140,6 +123,7 @@ export default function Form(showModal) {
               onChange={({ target: { value } }) =>
                 changeMonth(months.indexOf(value))
               }
+              className="datepicker-select"
             >
               {months.map((option) => (
                 <option key={option} value={option}>
@@ -161,16 +145,11 @@ export default function Form(showModal) {
         showIcon
         dateFormat="dd/MM/yyyy"
         renderCustomHeader={({ date, changeYear, changeMonth }) => (
-          <div
-            style={{
-              margin: 10,
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
+          <div className="datepicker-header">
             <select
               value={getYear(date)}
               onChange={({ target: { value } }) => changeYear(value)}
+              className="datepicker-select"
             >
               {years.map((option) => (
                 <option key={option} value={option}>
@@ -184,6 +163,7 @@ export default function Form(showModal) {
               onChange={({ target: { value } }) =>
                 changeMonth(months.indexOf(value))
               }
+              className="datepicker-select"
             >
               {months.map((option) => (
                 <option key={option} value={option}>
@@ -234,8 +214,8 @@ export default function Form(showModal) {
         <input
           id="zip-code"
           type="text"
-          // pattern="[0-9]{5}"
-          // maxLength={5}
+          pattern="[0-9]{5}"
+          maxLength={5}
           onChange={(e) => setZipCode(e.target.value)}
           value={zipCode}
           // required
