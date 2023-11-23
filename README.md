@@ -1,3 +1,3 @@
-# HRnet
-Welcome to HRnet! This is our company's internal application to create and view employee records.
+# OCP14 - HRNet
 
+14th Openclassroom project : Migrate a jQuery library to React
