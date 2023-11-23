@@ -11,15 +11,15 @@ import ConfirmationModal from 'modal-library-lfmi';
 import close from '../assets/img/close.png';
 import user from '../assets/img/user.png';
 
-export default function Form(showModal) {
+export default function Form() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
-  const [department, setDepartment] = useState('');
+  const [department, setDepartment] = useState('Sales');
   const [birthDate, setBirthDate] = useState(subYears(new Date(), 18));
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+  const [state, setState] = useState('Alabama');
   const [zipCode, setZipCode] = useState('');
 
   const years = range(1950, getYear(new Date()) + 2, 1);
@@ -70,16 +70,15 @@ export default function Form(showModal) {
 
     setFirstName('');
     setLastName('');
-    setStartDate('');
-    setDepartment('');
-    setBirthDate('');
+    setStartDate(new Date());
+    setDepartment('Sales');
+    setBirthDate(subYears(new Date(), 18));
     setStreet('');
     setCity('');
-    setState('');
+    setState('Alabama');
     setZipCode('');
 
     handleOpen();
-    // }
   };
 
   return (
@@ -90,7 +89,7 @@ export default function Form(showModal) {
         id="first-name"
         onChange={(e) => setFirstName(e.target.value)}
         value={firstName}
-        // required
+        required
       />
       <label htmlFor="last-name">Last Name</label>
       <input
@@ -98,7 +97,7 @@ export default function Form(showModal) {
         id="last-name"
         onChange={(e) => setLastName(e.target.value)}
         value={lastName}
-        // required
+        required
       />
       <label htmlFor="date-of-birth">Date of Birth</label>
       <DatePicker
@@ -134,11 +133,11 @@ export default function Form(showModal) {
           </div>
         )}
         selected={birthDate}
-        placeholderText="jj/mm/aaaa"
+        placeholderText="dd/mm/yyyy"
         maxDate={new Date()}
         onChange={(e) => setBirthDate(e)}
         value={birthDate}
-        // required
+        required
       />
       <label htmlFor="start-date">Start Date</label>
       <DatePicker
@@ -174,11 +173,11 @@ export default function Form(showModal) {
           </div>
         )}
         selected={startDate}
-        placeholderText="jj/mm/aaaa"
+        placeholderText="dd/mm/yyyy"
         maxDate={addYears(new Date(), 2)}
         onChange={(date) => setStartDate(date)}
         value={startDate}
-        // required
+        required
       />
       <fieldset className="address">
         <legend>Address</legend>
@@ -189,7 +188,7 @@ export default function Form(showModal) {
           type="text"
           onChange={(e) => setStreet(e.target.value)}
           value={street}
-          // required
+          required
         />
 
         <label htmlFor="city">City</label>
@@ -198,16 +197,16 @@ export default function Form(showModal) {
           type="text"
           onChange={(e) => setCity(e.target.value)}
           value={city}
-          // required
+          required
         />
 
         <label htmlFor="state">State</label>
         <Dropdown
           options={states}
-          placeholder={'Select a state'}
+          placeholder={state}
           onChange={(state) => setState(state)}
           value={state}
-          // required
+          required
         />
 
         <label htmlFor="zip-code">Zip Code</label>
@@ -218,17 +217,17 @@ export default function Form(showModal) {
           maxLength={5}
           onChange={(e) => setZipCode(e.target.value)}
           value={zipCode}
-          // required
+          required
         />
       </fieldset>
 
       <label htmlFor="department">Department</label>
       <Dropdown
         options={departments}
-        placeholder="Select a department"
+        placeholder={department}
         onChange={(department) => setDepartment(department)}
         value={department}
-        // required
+        required
       />
 
       <button type="submit" className="save">
