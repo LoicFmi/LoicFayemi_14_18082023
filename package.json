@@ -13,7 +13,7 @@
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.7.0",
     "material-table": "^1.63.0",
-    "modal-library-lfmi": "file:../../modal-library/modal-library-lfmi-0.3.27.tgz",
+    "modal-library-lfmi": "^1.0.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
