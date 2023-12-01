@@ -238,11 +238,21 @@ export const states = [
 ];
 
 export const departments = [
-    "Sales", 
-    "Marketing", 
-    "Engineering", 
-    "Human Resources", 
-    "Legal"
+    {
+        "value": "Sales" 
+    },
+    {
+        "value": "Marketing"
+    }, 
+    {
+        "value": "Engineering"
+    }, 
+    {
+        "value": "Human Resources"
+    },
+    { 
+        "value": "Legal"
+    }
 ];
 
 export const months = [

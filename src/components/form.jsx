@@ -6,7 +6,8 @@ import DatePicker from 'react-datepicker';
 import { subYears, addYears, getYear, getMonth } from 'date-fns';
 import range from 'lodash/range';
 import 'react-datepicker/dist/react-datepicker.css';
-import employees from '../data/Employees.json';
+import useStore from '../store';
+import { useForm } from 'react-hook-form';
 import ConfirmationModal from 'modal-library-lfmi';
 import close from '../assets/img/close.png';
 import user from '../assets/img/user.png';
@@ -15,28 +16,13 @@ export default function Form() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
-  const [department, setDepartment] = useState('Sales');
+  const [department, setDepartment] = useState(departments[0]);
   const [birthDate, setBirthDate] = useState(subYears(new Date(), 18));
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
-  const [state, setState] = useState('Alabama');
+  const [state, setState] = useState(states[0]);
   const [zipCode, setZipCode] = useState('');
-
   const years = range(1950, getYear(new Date()) + 2, 1);
-
-  const initialState = {
-    firstname: '',
-    lastname: '',
-    startdate: '',
-    department: '',
-    birthdate: '',
-    street: '',
-    city: '',
-    state: '',
-    zipcode: '',
-  };
-
-  const [newEmployee, setNewEmployee] = useState(initialState);
   const [modalState, setModalState] = useState(false);
   const handleOpen = () => {
     setModalState(true);
@@ -45,44 +31,36 @@ export default function Form() {
     e.preventDefault();
     setModalState(false);
   };
+  const { handleSubmit } = useForm();
+  const addEmployee = useStore((state) => state.addEmployee);
+  const onSave = (data) => {
+    data.firstname = firstName;
+    data.lastname = lastName;
+    data.startdate = startDate;
+    data.department = department.value;
+    data.birthdate = birthDate;
+    data.street = street;
+    data.city = city;
+    data.state = state.value;
+    data.zipcode = zipCode;
 
-  let employeesList =
-    JSON.parse(window.localStorage.getItem('employeesList')) || employees;
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    newEmployee.firstname = firstName;
-    newEmployee.lastname = lastName;
-    newEmployee.startdate = startDate;
-    newEmployee.department = department.value;
-    newEmployee.birthdate = birthDate;
-    newEmployee.street = street;
-    newEmployee.city = city;
-    newEmployee.state = state.value;
-    newEmployee.zipcode = zipCode;
-
-    employeesList.push(newEmployee);
-
-    localStorage.setItem('employeesList', JSON.stringify(employeesList));
-
-    setNewEmployee({ ...newEmployee }, e.target.reset());
+    addEmployee(data);
 
     setFirstName('');
     setLastName('');
     setStartDate(new Date());
-    setDepartment('Sales');
+    setDepartment(departments[0]);
     setBirthDate(subYears(new Date(), 18));
     setStreet('');
     setCity('');
-    setState('Alabama');
+    setState(states[0]);
     setZipCode('');
 
     handleOpen();
   };
 
   return (
-    <form action="" className="employee-form" onSubmit={handleSubmit}>
+    <form action="" className="employee-form" onSubmit={handleSubmit(onSave)}>
       <label htmlFor="first-name">First Name</label>
       <input
         type="text"
@@ -203,9 +181,8 @@ export default function Form() {
         <label htmlFor="state">State</label>
         <Dropdown
           options={states}
-          placeholder={state}
+          placeholder={'Alabama'}
           onChange={(state) => setState(state)}
-          value={state}
           required
         />
 
@@ -224,9 +201,8 @@ export default function Form() {
       <label htmlFor="department">Department</label>
       <Dropdown
         options={departments}
-        placeholder={department}
+        placeholder={'Sales'}
         onChange={(department) => setDepartment(department)}
-        value={department}
         required
       />
 

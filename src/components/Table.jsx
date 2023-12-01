@@ -1,12 +1,11 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import employees from '../data/Employees.json';
+import useStore from '../store';
 
 export default function Table() {
   const { useState } = React;
   const [selectedRow, setSelectedRow] = useState(null);
-  let employeesList =
-    JSON.parse(window.localStorage.getItem('employeesList')) || employees;
+  const employeesList = useStore((state) => state.employees);
   return (
     <MaterialTable
       title="Current Employees"
@@ -66,6 +65,7 @@ export default function Table() {
         setSelectedRow(selectedRow.tableData.id)
       }
       options={{
+        sorting: true,
         rowStyle: (rowData) => ({
           backgroundColor:
             selectedRow === rowData.tableData.id ? 'lightgrey' : '#FFF',
